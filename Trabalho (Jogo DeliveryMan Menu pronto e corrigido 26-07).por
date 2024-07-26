@@ -1,7 +1,7 @@
 programa{
 	inclua biblioteca Util-->u
 	funcao inicio(){
-		inteiro v[21], v2[21], jogador1=0, jogador2=0, vencedor, menu, i=0, placar, maior, menor, dado, casa, personagem=0, rodar=0, p=0, somador, JogadorAtual
+		inteiro v[21], v2[21], jogador1=0, jogador2=0, vencedor, menu, i=0, placar, maior, menor, dado, casa, personagem=0, rodar=0, p=0, somador=0, JogadorAtual
 		cadeia Ifood= "Ifood", UberEats= "UberEats"
 
 		escreva("Seja bem vindo ao DeliveryMan!")
@@ -138,32 +138,81 @@ programa{
 		v[jogador1]= 1
 		v2[jogador2]= 1
 			
-		enquanto (v[20]==0 e v2 [20]==0){		
+		enquanto (v[20]==0 e v2[20]==0){		
 			escreva ("\nJogador ", JogadorAtual, " digite 1 para jogar o dado, 2 para verificar placar ou qualquer outro valor para desistir e finalizar o jogo.")
 			leia (rodar)
 			se (rodar==1){
 				somador= u.sorteia(1, 6)
 				escreva ("O resultado do dado foi ", somador)
-
-				para (i=0; i<21; i++){
-					v[i]= 0
-					v2 [i]=0
-				}	
-
+				}
+					
 				se(JogadorAtual==1){
 					jogador1= jogador1 + somador
-					escreva ("\nParabéns você avançou para casa: ", jogador1)
+					para (i=0; i<21; i++){
+						v [i]=0
+					}
 					v[jogador1]= 1
+					
+					se (v [2]==1){
+						para (i=0; i<21; i++){
+								v[i]= 0
+							}
+						escreva ("\nVocê encontrou um atalho! Ihull!")
+						jogador1= 5
+						v [5]=1					
+						}
+				
+					se (v[3]==1){
+						para (i=0; i<21; i++){
+								v[i]= 0
+							}
+						escreva ("\nVocê ganhou uma jogada adicional de um dado de 3 lados.Boa sorte!")
+						escreva ("\nJogador ", JogadorAtual, " digite 1 para jogar o dado, 2 para verificar placar ou qualquer outro valor para desistir e finalizar o jogo.")
+						leia (rodar)
+	
+						se (rodar==1){
+							somador= u.sorteia(1, 3)
+							escreva ("O resultado do dado foi ", somador)
+							jogador1= jogador1 + somador
+							v[jogador1]= 1
+							}	
+						}
+					escreva ("\nParabéns você avançou para casa: ", jogador1)
 					JogadorAtual=2
-
+					
 				}senao{
-						jogador2= jogador2 + somador
-						escreva ("\nParabéns você avançou para casa: ", jogador2)
-						v2 [jogador2]=1
-						JogadorAtual=1
+					jogador2= jogador2 + somador
+					para (i=0; i<21; i++){
+						v2 [i]= 0
+					}
+					v2 [jogador2]=1
+						
+					se (v2 [2]==1){
+						para (i=0; i<21; i++){
+								v[i]= 0
+								}
+						escreva ("\nVocê encontrou um atalho! Ihull!")
+						jogador2= 5
+						v2 [5]=1
+									
+					}se (v[3]==1){
+						escreva ("\nVocê ganhou uma jogada adicional de um dado de 3 lados.Boa sorte!")
+						
+						escreva ("\nJogador ", JogadorAtual, " digite 1 para jogar o dado, 2 para verificar placar ou qualquer outro valor para desistir e finalizar o jogo.")
+						leia (rodar)
+						
+						se (rodar==1){
+							somador= u.sorteia(1, 3)
+							escreva ("O resultado do dado foi ", somador)
+							jogador2= jogador2 + somador
+							v2[jogador2]= 1
+						}
+					}
+					escreva ("\nParabéns você avançou para casa: ", jogador2)
+					JogadorAtual=1
 				}
+					
 			}
-		}
 
 			se(menu == 2){
 				escreva ("\nVerificar placar")
@@ -178,9 +227,9 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 4175; 
+ * @POSICAO-CURSOR = 6647; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
+ * @SIMBOLOS-INSPECIONADOS = {v, 4, 10, 1}-{v2, 4, 17, 2};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz;
  */
